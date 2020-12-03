@@ -1,10 +1,9 @@
 # o(n) solution
 
 # turns the input into an array of chars
-# o(n) could be o(1) but idk how to remove
-# last char in o(1) so
+# 0(2) = o(1)
 def clean_input(t):
-    return t.strip("\n")
+    return t.rstrip("\n")
 
 
 # cycles through given the slope information
