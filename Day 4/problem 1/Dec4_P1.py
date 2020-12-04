@@ -1,7 +1,3 @@
-# o(n) solution
-import re
-
-
 # using regex to check if certain fields exist in a given string
 # and if those fields are valid
 # in a fast (not very readable) way
@@ -47,8 +43,6 @@ def numValid(passports):
 
 
 if __name__ == "__main__":
-    inputs = []
-
     # reading in the input
     with open("../input.txt", "r") as f:
         inputs = f.readlines()
@@ -56,3 +50,4 @@ if __name__ == "__main__":
     print(numValid(inputs))
 
 # ALWAYS CHECK THE LAST LINE
+# 245 my answer

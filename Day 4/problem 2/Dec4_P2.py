@@ -60,8 +60,6 @@ def numValid(passports):
 
 
 if __name__ == "__main__":
-    inputs = []
-
     # reading in the input
     with open("../input.txt", "r") as f:
         inputs = f.readlines()
