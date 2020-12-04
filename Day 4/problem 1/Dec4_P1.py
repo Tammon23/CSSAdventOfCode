@@ -1,6 +1,10 @@
 # using regex to check if certain fields exist in a given string
 # and if those fields are valid
 # in a fast (not very readable) way
+# could be made faster if we used bit manipulation instead
+# score would start out as 0, and each field will have 1 bit
+# then we can pass the score into the function, and test if it is right by checking
+# if score = 127
 def checkstring(s):
     byr = iyr = eyr = hgt = hcl = ecl = pid = 0
     if "byr:" in s:
