@@ -1,6 +1,3 @@
-def clean_input(t):
-    return t.strip("\n")
-
 # finds my seat id in a given ids
 # assuming all digits are present
 # mine is the digit that is missing
@@ -14,8 +11,8 @@ def mySeatID(data):
 
     seats.sort()
 
-    for i in range(len(seats)-1):
-        if seats[i] != seats[1+i] - 1:
+    for i in range(len(seats) - 1):
+        if seats[i] != seats[1 + i] - 1:
             return seats[i] + 1
     return -1
 
@@ -23,7 +20,6 @@ def mySeatID(data):
 if __name__ == "__main__":
     # reading in the input
     with open("input.txt", "r") as f:
-        # inputs = map(clean_input, f.readlines())
         inputs = f.readlines()
 
     print(mySeatID(inputs))
