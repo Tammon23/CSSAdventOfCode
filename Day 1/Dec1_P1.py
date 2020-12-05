@@ -18,9 +18,7 @@ def find_numbers(numbers):
 
 
 if __name__ == "__main__":
-    inputs = []
-
     # reading in the input
-    with open("../input.txt", "r") as f:
+    with open("input.txt", "r") as f:
         inputs = map(clean_input, f.readlines())
     print(find_numbers(inputs))

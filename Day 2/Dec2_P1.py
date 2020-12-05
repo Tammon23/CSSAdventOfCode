@@ -29,10 +29,8 @@ def validate_password(passwords):
     return num_valid
 
 if __name__ == "__main__":
-    inputs = []
-
     # reading in the input
-    with open("../input.txt", "r") as f:
+    with open("input.txt", "r") as f:
         inputs = list(map(clean_input, f.readlines()))
 
     print(validate_password(inputs))
