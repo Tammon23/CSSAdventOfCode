@@ -1,4 +1,5 @@
 from datetime import date
+import webbrowser
 import shutil
 import os
 
@@ -17,6 +18,11 @@ if __name__ == "__main__":
             shutil.copyfile("BaseFile.py", folder_name + "/Dec" + str(day) + "_P2.py")
             with open(folder_name + "/input.txt", "w"):
                 pass
+
+            # opening the problem in the default browser
+            question_webpage = "https://adventofcode.com/2020/day/" + str(day)
+            webbrowser.open(question_webpage, new=1)
+            webbrowser.open(question_webpage + "/input", new=2)
 
         except FileExistsError:
             print("Folder for day", day, "already exists")
