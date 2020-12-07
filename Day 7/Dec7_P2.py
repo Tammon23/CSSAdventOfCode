@@ -21,11 +21,9 @@ def bag_values(data):
 
     return seen
 
-
-# 82930
-
-
-def find_bag_value2(bag_values, search_term):
+# finds the exact number of sub bags needed to make the outer bag
+# considered valid
+def find_bag_value(bag_values, search_term):
     numChanges = {}
     numInnerBags = {}
 
@@ -85,7 +83,7 @@ if __name__ == "__main__":
     with open("input.txt", "r") as f:
         inputs = f.readlines()
 
-    print(find_bag_value2(bag_values(inputs), "shiny gold"))
+    print(find_bag_value(bag_values(inputs), "shiny gold"))
 
     # x = number_of_inner_bags + number_of_inner_bags * amount_of_sub_bags
     # 126 = 2 + 2*62 shiny gold bags contain 2 dark red bags.
