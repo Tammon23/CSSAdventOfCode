@@ -19,4 +19,3 @@ if __name__ == "__main__":
         inputs = f.readlines()
 
     print(numAnsweredQuestions(inputs))
-    print(sum(len(set(t.replace("\n", ""))) for t in "".join(open("input.txt").readlines()).split("\n\n")))
