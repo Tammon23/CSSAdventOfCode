@@ -11,24 +11,22 @@ def find_invalid(data):
     for element in data:
         options = sorted(preamble)
         i = 0
-        j = 24
-        solution = False
+        j = 24  # capture size of preamble -1
 
         while i < j:
-            if options[i] + options[j] < element:
+            testing_sum = options[i] + options[j]
+            if testing_sum < element:
                 i += 1
-            elif options[i] + options[j] > element:
+            elif testing_sum > element:
                 j -= 1
             else:
-                solution = True
                 break
 
-        if solution:
-            preamble.pop(0)
-            preamble.append(element)
-
-        else:
+        if testing_sum != element:
             return element
+
+        preamble.pop(0)
+        preamble.append(element)
 
     return None
 
