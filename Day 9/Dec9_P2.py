@@ -1,35 +1,8 @@
+from Dec9_P1 import find_invalid
+
+
 def clean_input(t):
     return int(t.strip("\n"))
-
-
-# from part 1
-# finds the invalid number that causes
-# the encoding error
-def find_invalid(data):
-    preamble = data[:25]
-    data = data[25:]
-
-    for element in data:
-        options = sorted(preamble)
-        i = 0
-        j = 24  # capture size of preamble -1
-
-        while i < j:
-            testing_sum = options[i] + options[j]
-            if testing_sum < element:
-                i += 1
-            elif testing_sum > element:
-                j -= 1
-            else:
-                break
-
-        if testing_sum != element:
-            return element
-
-        preamble.pop(0)
-        preamble.append(element)
-
-    return None
 
 
 # finds the continuous set that would make the invalid number
@@ -57,6 +30,7 @@ def find_encryption_weakness(data):
 
         else:
             break
+
     if i == len(data):
         return None
     return max(continuous_list) + min(continuous_list)
