@@ -57,6 +57,7 @@ def find_encryption_weakness(data):
 
         else:
             break
+
     if i == len(data):
         return None
     return max(continuous_list) + min(continuous_list)
