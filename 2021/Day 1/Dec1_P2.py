@@ -1,16 +1,22 @@
-#
+# file = "example_input.txt"
+file = "input.txt"
+
+
 def clean_input(t):
-    return t.strip("\n")
+    return int(t.strip("\n"))
 
 
 def SomeFunction(data):
-    pass
+    n = 0
+    for i in range(len(data)-3):
+        if sum(data[i:i+3]) < sum(data[i+1:i+1+3]):
+            n += 1
+    return n
 
 
 if __name__ == "__main__":
     # reading in the input
-    with open("input.txt", "r") as f:
-        # inputs = map(clean_input, f.readlines())
-        inputs = f.readlines()
+    with open(file, "r") as f:
+        inputs = list(map(clean_input, f.readlines()))
 
     print(SomeFunction(inputs))
