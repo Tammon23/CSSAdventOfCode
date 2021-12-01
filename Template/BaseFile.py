@@ -1,3 +1,4 @@
+#
 def clean_input(t):
     return t.strip("\n")
 
