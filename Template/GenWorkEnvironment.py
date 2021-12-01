@@ -16,7 +16,7 @@ if __name__ == "__main__":
             os.mkdir(folder_name)
             shutil.copyfile("BaseFile.py", f"{folder_name}/Dec{day}_P1.py")
             shutil.copyfile("BaseFile.py", f"{folder_name}/Dec{day}_P2.py")
-            with open(f"{folder_name}/input.txt", "w"):
+            with open(f"{folder_name}/input.txt", "w"), open(f"{folder_name}/example_input.txt", "w"):
                 pass
 
             # opening the problem in the default browser
