@@ -10,7 +10,7 @@ if __name__ == "__main__":
         print("It's not december anymore what you even doing")
 
     else:
-        folder_name = f"../{today.year}/Day{day}"
+        folder_name = f"../{today.year}/Day {day}"
         try:
 
             os.mkdir(folder_name)
