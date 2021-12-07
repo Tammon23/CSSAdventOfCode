@@ -1,0 +1,1 @@
+with open("example_input.txt" if 0 else "input.txt", "r") as f:print((lambda d, n: int(min(sum([(abs(c - n) * (abs(c - n) + 1)) for c in d]), sum([(abs(c - n-1) * (abs(c - n-1) + 1)) for c in d]), sum([(abs(c - n+1) * (abs(c - n+1) + 1)) for c in d]))/2))((e:=list(map(int, f.read().strip().split(",")))), round(sum(e)/len(e))))
