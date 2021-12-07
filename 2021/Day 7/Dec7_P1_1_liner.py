@@ -1,0 +1,1 @@
+with open("example_input.txt" if 0 else "input.txt", "r") as f: print((lambda d, n: sum([abs(c - n) for c in d]))((e:=list(map(int, f.read().strip().split(",")))), sorted(e)[len(e)//2] if len(e) % 2 != 0 else int(sum((sorted(e)[len(e)//2-1:len(e)//2+1]))/ 2)))
