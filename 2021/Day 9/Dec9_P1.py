@@ -12,28 +12,15 @@ def SomeFunction(data):
   ans = 0
   for i, row in enumerate(data):
     for j, element in enumerate(row):
+      dir = [(i+1, j), (i-1, j), (i, j+1), (i, j-1)]
       score = max_score = 0
-      if i + 1 < max_row :
-        max_score += 1
-        if element < data[i+1][j]: 
-          score += 1
+      for x,y in dir:
+        if 0 <= x < max_row and 0 <= y < max_col:
+          max_score += 1
+          if element < data[x][y]:
+            score += 1
 
-      if i - 1 >= 0:
-        max_score += 1
-        if element < data[i-1][j]:
-          score += 1
-
-      if j + 1 < max_col:
-        max_score += 1
-        if element < data[i][j+1]:
-          score += 1
-
-      if j - 1 >= 0:
-        max_score += 1
-        if element < data[i][j-1]:
-          score += 1
-
-      if score != 0 and score == max_score:
+      if score == max_score and score != 0:
         ans += element + 1
 
   return ans
