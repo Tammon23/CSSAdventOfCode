@@ -33,7 +33,7 @@ def SomeFunction(data):
         if element < data[i][j-1]:
           score += 1
 
-      if score == max_score and score != 0:
+      if score != 0 score == max_score:
         ans += element + 1
 
   return ans
