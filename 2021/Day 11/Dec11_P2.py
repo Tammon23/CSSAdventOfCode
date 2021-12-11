@@ -2,6 +2,7 @@
 file = "input.txt"
 
 
+# displays data in readable format
 def pprint(data, s=10):
     print("-" * s * 4)
     for d in data:
