@@ -30,7 +30,7 @@ def SomeFunction(polymer_template, pair_insertions, num_steps):
 
     # since we have a dict of pairs and their frequencies (NNCB -> {NN:1, NC:1, CB:1})
     # in order to count each letter's frequency once we focus on the
-    # left character of the pair, and manually increment the first character
+    # last character of each pair, and manually increment the first character
     # of the first pair
     counts = {}
     for key in unfiltered_pairs:
