@@ -1,5 +1,5 @@
-# file = "example_input.txt"
-file = "input.txt"
+file = "example_input.txt"
+# file = "input.txt"
 
 
 def SomeFunction(data):
@@ -38,6 +38,22 @@ def SomeFunction2(data):
     return score
 
 
+def SomeFunction3(data):
+    score = 0
+    for line in data:
+        a, b = line.split()
+        score += ord(b) - ord("X") + 1
+        if (ord(a) - ord("A") + 1) % 3 == ord(b) - ord("X"):
+            score += 6
+
+        elif ord(a) - ord("A") == ord(b) - ord("X"):
+            score += 3
+
+
+
+    return score
+
+
 if __name__ == "__main__":
     # reading in the input
     with open(file, "r") as f:
@@ -45,3 +61,4 @@ if __name__ == "__main__":
 
     print(SomeFunction(inputs))
     print(SomeFunction2(inputs))
+    print(SomeFunction3(inputs))
