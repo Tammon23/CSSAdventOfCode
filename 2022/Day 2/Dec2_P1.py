@@ -1,7 +1,5 @@
-file = "example_input.txt"
-
-
-# file = "input.txt"
+# file = "example_input.txt"
+file = "input.txt"
 
 
 def SomeFunction(data):
@@ -59,12 +57,7 @@ def SomeFunction4(data):
     score = 0
     for line in data:
         a, b = line.split()
-        score += ord(b) - ord("X") + 1
-        t = (ord(a) - ord(b)) % 3
-        if t == 0:
-            score += 6
-        elif t == 2:
-            score += 3
+        score += ord(b) - ord("X") + 7 - ((ord(a) - ord(b)) % 3) * 3
 
     return score
 
