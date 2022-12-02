@@ -1,4 +1,6 @@
 file = "example_input.txt"
+
+
 # file = "input.txt"
 
 
@@ -43,13 +45,26 @@ def SomeFunction3(data):
     for line in data:
         a, b = line.split()
         score += ord(b) - ord("X") + 1
+
         if (ord(a) - ord("A") + 1) % 3 == ord(b) - ord("X"):
             score += 6
 
         elif ord(a) - ord("A") == ord(b) - ord("X"):
             score += 3
 
+    return score
 
+
+def SomeFunction4(data):
+    score = 0
+    for line in data:
+        a, b = line.split()
+        score += ord(b) - ord("X") + 1
+        t = (ord(a) - ord(b)) % 3
+        if t == 0:
+            score += 6
+        elif t == 2:
+            score += 3
 
     return score
 
@@ -62,3 +77,4 @@ if __name__ == "__main__":
     print(SomeFunction(inputs))
     print(SomeFunction2(inputs))
     print(SomeFunction3(inputs))
+    print(SomeFunction4(inputs))
