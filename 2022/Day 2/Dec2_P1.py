@@ -4,8 +4,8 @@ file = "input.txt"
 
 def SomeFunction(data):
     score = 0
-    for l in data:
-        a, b = l.split()
+    for line in data:
+        a, b = line.split()
         if b == "X":
             score += 1
         elif b == "Y":
@@ -22,9 +22,26 @@ def SomeFunction(data):
     return score
 
 
+def SomeFunction2(data):
+    score = 0
+    theirs, mine = ["A", "B", "C"], ["X", "Y", "Z"]
+    for line in data:
+        a, b = line.split()
+        score += ord(b) - ord("X") + 1
+
+        if (theirs.index(a) + 1) % 3 == mine.index(b):
+            score += 6
+
+        if theirs.index(a) == mine.index(b):
+            score += 3
+
+    return score
+
+
 if __name__ == "__main__":
     # reading in the input
     with open(file, "r") as f:
         inputs = f.readlines()
 
     print(SomeFunction(inputs))
+    print(SomeFunction2(inputs))
