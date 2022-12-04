@@ -1,3 +1,5 @@
+import re
+
 # file = "example_input.txt"
 file = "input.txt"
 
@@ -24,9 +26,23 @@ def SomeFunction(data):
     return total
 
 
+def SomeFunction2(data):
+    total = 0
+    for line in data:
+        a1, a2, b1, b2 = map(int, re.split("[-,]", line))
+        suba = set(range(a1, a2 + 1))
+        subb = set(range(b1, b2 + 1))
+
+        if suba.intersection(subb):
+            total += 1
+
+    return total
+
+
 if __name__ == "__main__":
     # reading in the input
     with open(file, "r") as f:
         inputs = f.readlines()
 
     print(SomeFunction(inputs))
+    print(SomeFunction2(inputs))
