@@ -1,28 +1,30 @@
 import re
 from textwrap import wrap
 
-# file = "example_input.txt"
-file = "input.txt"
-
-
-def clean_input(t):
-    return t.strip("\n")
+file = "example_input.txt"
+# file = "input.txt"
 
 
 def SomeFunction(data):
     crates = []
     pileSizes = 0
+
+    # reading each line until we read all the crate stacks
     for i, line in enumerate(data):
-        sub_line = wrap(line.rstrip(), 4, replace_whitespace=False, drop_whitespace=False)
+        sub_line = wrap(line.rstrip(), 4, drop_whitespace=False)
         if sub_line[0] == " 1":
             pileSizes = len(sub_line)
             break
         crates.append(sub_line.copy())
 
+    # making each sub_line length uniform and transposing the horizontal stacks into vertical stacks
     crates = list(zip(*[c + [""] * (pileSizes - len(c)) for c in crates]))
-    cratesgroup = [list(filter(lambda x: x != '    ' and len(x), t)) for t in crates]
-    cratesgroup = [[c.strip()[1] for c in crates] for crates in cratesgroup]
 
+    # filtering out each empty line and cleaning up the input
+    cratesgroup = [list(filter(lambda x: x != '    ' and len(x), t)) for t in crates]
+    cratesgroup = [[c[1] for c in crates] for crates in cratesgroup]
+
+    # doing the stack moving manually
     for line in data[i + 2:]:
         a, b, c = map(int, re.match(r'move (\d+) from (\d+) to (\d+)', line).groups())
 
