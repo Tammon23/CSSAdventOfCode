@@ -39,9 +39,36 @@ def SomeFunction(data):
     return "".join([t[0] for t in cratesgroup])
 
 
+def SomeFunction2(data):
+    num_stacks = (len(data[0])) // 4
+    stacks = [list() for _ in range(num_stacks)]
+
+    for j, line in enumerate(data):
+        if line[1] == "1":
+            break
+        for i, si in enumerate(range(1, len(data[0]), 4)):
+            letter = line[si]
+            if letter != " ":
+                stacks[i].append(letter)
+
+    for line in data[j + 2:]:
+        a, b, c = map(int, re.match(r'move (\d+) from (\d+) to (\d+)', line).groups())
+
+        b -= 1
+        c -= 1
+
+        old_part = stacks[b][:a]
+        old_part.reverse()
+        stacks[b] = stacks[b][a:]
+        stacks[c] = old_part + stacks[c]
+
+    return "".join([t[0] for t in stacks])
+
+
 if __name__ == "__main__":
     # reading in the input
     with open(file, "r") as f:
         inputs = f.readlines()
 
     print(SomeFunction(inputs))
+    print(SomeFunction2(inputs))
