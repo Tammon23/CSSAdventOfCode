@@ -1,7 +1,7 @@
 from collections import defaultdict
 
-# file = "example_input.txt"
-file = "input.txt"
+file = "example_input.txt"
+# file = "input.txt"
 
 
 def SomeFunction(data):
@@ -23,21 +23,13 @@ def SomeFunction(data):
         monkeys_data[monkey] = operation, test, truetest, falsetest
         monkeys[monkey] = starting_items + monkeys[monkey]
 
-        for item in monkeys[monkey]:
-            monkey_inspect[monkey] += 1
-            worry_level = operation(item)
-            if worry_level % test == 0:
-                monkeys[truetest] += [worry_level]
-            else:
-                monkeys[falsetest] += [worry_level]
-        monkeys[monkey] = []
     nMonkeys = len(t)
 
     magic = 1
     for x in monkeys_data.values():
         magic *= x[1]
 
-    for i in range(9999):
+    for i in range(10000):
         for monkey in range(nMonkeys):
             operation, test, truetest, falsetest = monkeys_data[monkey]
             for item in monkeys[monkey]:

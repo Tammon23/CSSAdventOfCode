@@ -1,8 +1,6 @@
 from collections import defaultdict
 
 file = "example_input.txt"
-
-
 # file = "input.txt"
 
 
@@ -25,18 +23,9 @@ def SomeFunction(data):
         monkeys_data[monkey] = operation, test, truetest, falsetest
         monkeys[monkey] = starting_items + monkeys[monkey]
 
-        for item in monkeys[monkey]:
-            monkey_inspect[monkey] += 1
-            worry_level = operation(item) // 3
-            if worry_level % test == 0:
-                monkeys[truetest] += [worry_level]
-            else:
-                monkeys[falsetest] += [worry_level]
-
-        monkeys[monkey] = []
     nMonkeys = len(t)
 
-    for _ in range(19):
+    for _ in range(20):
         for monkey in range(nMonkeys):
             operation, test, truetest, falsetest = monkeys_data[monkey]
             for item in monkeys[monkey]:
@@ -48,7 +37,7 @@ def SomeFunction(data):
                     monkeys[falsetest] += [worry_level]
 
             monkeys[monkey] = []
-            
+
     *_, a, b = sorted(list(monkey_inspect.values()))[-2:]
     return a * b
 
