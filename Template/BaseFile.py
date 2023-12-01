@@ -1,12 +1,14 @@
+from typing import Any, Iterable
+
 file = "example_input.txt"
 # file = "input.txt"
 
 
-def clean_input(t):
+def clean_input(t: str) -> str:
     return t.strip("\n")
 
 
-def SomeFunction(data):
+def SomeFunction(data: Iterable[str]) -> Any:
     return data
 
 
