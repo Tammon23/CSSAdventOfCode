@@ -1,45 +1,36 @@
-from collections import defaultdict
 from itertools import cycle
 from math import lcm
 
 
-file = "example_input.txt"
-# file = "example_input_p2.txt"
+# file = "example_input.txt"
+file = "example_input_p2.txt"
 # file = "input.txt"
 
 
 if __name__ == "__main__":
     # reading in the input
     with open(file, "r") as f:
-        inputs = f.readlines()
+        inputs = f.read().splitlines()
+
     mapping = {}
-    instructions = inputs[0].strip()
-    for line in inputs[2:]:
-        key, value = line.strip().split("=")
-        mapping[key.strip()] = [value.strip()[1:4], value.strip()[6:9]]
+    instructions, _, *maps = inputs
+    for line in maps:
+        key, value = line.split(" = ")
+        mapping[key] = value[1:-1].split(", ")
 
-    cur = []
+    cur = filter(lambda x: x.endswith("A"), mapping.keys())
+    counts = set()
 
-    for key in mapping:
-        if key[-1] == "A":
-            cur.append(key)
-
-    counts = defaultdict(int)
-    for i in range(len(cur)):
+    for i, cur_node in enumerate(cur):
         length = 0
-        cur_node = cur[i]
         for direction in cycle(instructions):
             length += 1
+            cur_node = mapping[cur_node][1 if direction == "R" else 0]
 
-            if direction == "R":
-                cur_node = mapping[cur_node][1]
-            else:
-                cur_node = mapping[cur_node][0]
-
-            if cur_node[-1] == "Z":
+            if cur_node.endswith("Z"):
                 break
 
-        counts[length] += 1
+        counts.add(length)
 
-    print(lcm(*list(counts.keys())))
+    print(lcm(*counts))
 
