@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+from functools import reduce
 from typing import Tuple, Iterable, Any
 
 
@@ -16,6 +19,7 @@ strs_to_directions = {
 }
 
 
+# thank you https://stackoverflow.com/a/287944/19236048
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -27,7 +31,79 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 
-def colourize(text: str, colour: bcolors=bcolors.FAIL) -> str:
+class Vector:
+    def __init__(self, description: str, *args):
+        self.description = description
+        self.vec = {label: value for label, value in zip(description.split(" "), args)}
+
+        for name, value in self.vec.items():
+            setattr(self, name, value)
+
+    def __repr__(self):
+        return f"Vector {{{" ".join(f"{name}={value}" for name, value in self.vec.items())}}}"
+
+    def __add__(self, other: int | Vector):
+        vec = self.vec
+        if isinstance(other, int):
+            return Vector(self.description, *(vec[label] + other for label in vec))
+
+        return Vector(self.description, *(vec[label] + other.vec[label] for label in vec))
+
+    def __mul__(self, other: int | Vector):
+        vec = self.vec
+        if isinstance(other, int):
+            return Vector(self.description, *(vec[label] * other for label in vec))
+
+        return Vector(self.description, *(vec[label] * other.vec[label] for label in vec))
+
+    def __sub__(self, other: int | Vector):
+        vec = self.vec
+        if isinstance(other, int):
+            return Vector(self.description, *(vec[label] - other for label in vec))
+
+        return Vector(self.description, *(vec[label] - other.vec[label] for label in vec))
+
+    def __isub__(self, other: int | Vector):
+        vec = self.vec
+        if isinstance(other, int):
+            return Vector(self.description, *(other - vec[label] for label in vec))
+
+        return Vector(self.description, *(other.vec[label] - vec[label] for label in vec))
+
+    def __floordiv__(self, other: int | Vector):
+        vec = self.vec
+        if isinstance(other, int):
+            return Vector(self.description, *(vec[label] // other for label in vec))
+
+        return Vector(self.description, *(vec[label] // other.vec[label] for label in vec))
+
+    def __ifloordiv__(self, other):
+        vec = self.vec
+        if isinstance(other, int):
+            return Vector(self.description, *(other // vec[label] for label in vec))
+
+        return Vector(self.description, *(other.vec[label] // vec[label]for label in vec))
+
+    def __truediv__(self, other: int | Vector):
+        vec = self.vec
+        if isinstance(other, int):
+            return Vector(self.description, *(vec[label] / other for label in vec))
+
+        return Vector(self.description, *(vec[label] / other.vec[label] for label in vec))
+
+    def __itruediv__(self, other):
+        vec = self.vec
+        if isinstance(other, int):
+            return Vector(self.description, *(other / vec[label] for label in vec))
+
+        return Vector(self.description, *(other.vec[label] / vec[label] for label in vec))
+
+
+def product(values: Iterable[int]):
+    return reduce(lambda x, y: x * y, values)
+
+
+def colourize(text: str, colour: bcolors = bcolors.FAIL) -> str:
     return f"{colour}{text}\033[0m"
 
 
