@@ -1,7 +1,5 @@
-from __future__ import annotations
-
 from functools import reduce
-from typing import Tuple, Iterable, Any
+from typing import Tuple, Iterable, Any, Self
 
 
 class Directions:
@@ -39,38 +37,41 @@ class Vector:
         for name, value in self.vec.items():
             setattr(self, name, value)
 
+    def get_as_tuple(self) -> Tuple[Any, ...]:
+        return tuple(value for value in self.vec.values())
+
     def __repr__(self):
         return f"Vector {{{" ".join(f"{name}={value}" for name, value in self.vec.items())}}}"
 
-    def __add__(self, other: int | Vector):
+    def __add__(self, other: int | Self):
         vec = self.vec
         if isinstance(other, int):
             return Vector(self.description, *(vec[label] + other for label in vec))
 
         return Vector(self.description, *(vec[label] + other.vec[label] for label in vec))
 
-    def __mul__(self, other: int | Vector):
+    def __mul__(self, other: int | Self):
         vec = self.vec
         if isinstance(other, int):
             return Vector(self.description, *(vec[label] * other for label in vec))
 
         return Vector(self.description, *(vec[label] * other.vec[label] for label in vec))
 
-    def __sub__(self, other: int | Vector):
+    def __sub__(self, other: int | Self):
         vec = self.vec
         if isinstance(other, int):
             return Vector(self.description, *(vec[label] - other for label in vec))
 
         return Vector(self.description, *(vec[label] - other.vec[label] for label in vec))
 
-    def __isub__(self, other: int | Vector):
+    def __isub__(self, other: int | Self):
         vec = self.vec
         if isinstance(other, int):
             return Vector(self.description, *(other - vec[label] for label in vec))
 
         return Vector(self.description, *(other.vec[label] - vec[label] for label in vec))
 
-    def __floordiv__(self, other: int | Vector):
+    def __floordiv__(self, other: int | Self):
         vec = self.vec
         if isinstance(other, int):
             return Vector(self.description, *(vec[label] // other for label in vec))
@@ -84,7 +85,7 @@ class Vector:
 
         return Vector(self.description, *(other.vec[label] // vec[label]for label in vec))
 
-    def __truediv__(self, other: int | Vector):
+    def __truediv__(self, other: int | Self):
         vec = self.vec
         if isinstance(other, int):
             return Vector(self.description, *(vec[label] / other for label in vec))
