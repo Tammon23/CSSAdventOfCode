@@ -5,16 +5,12 @@ file = "example_input.txt"
 
 @lru_cache
 def solve(row: int, col: int) -> int:
-    maxRow = len(inputs)
     if col < 0 or col >= len(inputs[0]):
         return set()
 
-    while row < maxRow:
-        if inputs[row][col] == ".":
-            row += 1
-
-        elif inputs[row][col] == "^":
-            return {(row,col)} | solve(row, col + 1) | solve(row, col - 1)
+    for row in range(row, len(inputs)):
+        if inputs[row][col] == "^":
+            return {(row, col)} | solve(row, col + 1) | solve(row, col - 1)
 
     return set()
 
